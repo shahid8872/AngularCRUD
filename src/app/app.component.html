@@ -1,0 +1,86 @@
+<section>
+<div class="columns">
+    <div class="column is-2">
+    <input class="input" type="text" [(ngModel)]="id">
+    </div>
+    <div class="column is-2">
+        <input class="input" type="text" [(ngModel)]="firstName">
+    </div>
+    <div class="column is-2">
+        <input class="input" type="text" [(ngModel)]="lastName">
+    </div>
+    <div class="column is-2">
+        <input class="input" type="text" [(ngModel)]="balance">
+    </div>
+    <div class="column is-2">
+        <input class="input" type="text" [(ngModel)]="date">
+    </div>
+</div>
+<div class="columns">
+    <div class="column is-2">
+        <a (click)="localUpdate()" class="button is-success">Update</a>
+    </div>
+    <!-- <div class="column is-2">
+        <a (click)="updateTest(3)" class="button is-success">Update (3)</a>
+    </div> -->
+
+    <div class="column is-2">
+        <a (click)="localAdd()" class="button is-success">Add new</a>
+    </div>
+    <div class="column is-2">
+        <a (click)="localDelete()" class="button is-success">Delete</a>
+    </div>
+</div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <thead>
+            <tr>
+                <th class="card-content">Id</th>
+                <th class="card-content">First Name</th>
+                <th class="card-content">Last Name</th>
+                <th class="card-content">Balance</th>
+                <th class="card-content">Date</th>
+                <th class="card-content">Edit</th>
+                <th class="card-content">Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let user of localUsers">
+                <td class="card-content">
+                    <a routerLink="/users/{{ user.id }}">
+                        {{ user.id }}
+                    </a>
+                </td>
+                <td class="card-content">
+                    <a routerLink="/users/{{ user.firstName }}">
+                        {{ user.firstName }}
+                    </a>
+                </td>
+                <td class="card-content">
+                    <a routerLink="/users/{{ user.lastName }}">
+                        {{ user.lastName }}
+                    </a>
+                </td>
+                <td class="card-content">
+                    <a routerLink="/users/{{ user.balance }}">
+                        {{ user.balance | currency:'BDT ' }}
+                    </a>
+                </td>
+                <td class="card-content">
+                    <a routerLink="/users/{{ user.date }}">
+                        {{ user.date | date}}
+                    </a>
+                </td>
+                <td>
+                    <button (click)="localEdit(user)" class="button is-primary">Edit</button>
+                </td>
+                <td>
+                    <button (click)="localDeleteButton(user)" class="button is-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </div>
+</section>
